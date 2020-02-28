@@ -1,16 +1,14 @@
 
 def valorAdjacencia(esta_i, esta_j):
-    
-    vet_map = mapa()
-    num_linha = len(vet_map)
-    num_coluna = len(vet_map[0])
+    num_linha = len(map_atualiza)
+    num_coluna = len(map_atualiza[0])
     for i in range(num_linha):
       for j in range(num_coluna):
         if i == esta_i and j == esta_j:
-          mapaAtualizado(i,j)
-          v = [vet_map[i][j-1],vet_map[i+1][j+1],vet_map[i][j+1],vet_map[i-1][j]]
-    # print('v = ', v)
-    # print('Mapa do valorAdjacencia = ', vet_map)
+          map_atualiza[j][i] = 1
+          v = [map_atualiza[i][j-1],map_atualiza[i+1][j+1],map_atualiza[i][j+1],map_atualiza[i-1][j]]
+    print('v = ', v)
+    print('Mapa do valorAdjacencia = ', map_atualiza)
     return v
 
 def direcaoDeIda(esta_i, esta_j):
@@ -47,21 +45,23 @@ def parede(mat_map):
   return mat_map
     
 def mover(esta_i, esta_j):
-  vet_map = mapa()
   pos_vaga = direcaoDeIda(esta_i, esta_j)
-  if pos_vaga == 0:
-    print('Norte')
-  elif pos_vaga == 1:
-    print('Leste')
-    #vet_map[][]
-    direcaoDeIda(esta_i + 1,esta_j)#Nova posição que está
-  elif pos_vaga == 2:
-    print('Sul')
-  elif pos_vaga == 3:
-    print('Oeste')
-  else:
-    print('Todas adjacencias Oculpadas')
+  esta_i_atualizado = esta_i; 
+  while(pos_vaga >-1 and pos_vaga <4):
+    if pos_vaga == 0:
+      print('Norte')
+    elif pos_vaga == 1:
+      print('Leste')
+      esta_i_atualizado = esta_i_atualizado + 1
+      if(esta_i_atualizado > 3):
+        exit(1)
+      direcaoDeIda(esta_i_atualizado ,esta_j)#Nova posição que está
+    elif pos_vaga == 2:
+      print('Sul')
+    elif pos_vaga == 3:
+      print('Oeste')
+    else:
+      print('Todas adjacencias Oculpadas')
 
 map_atualiza = mapa()
-mapa()
 mover(1,1)
