@@ -50,18 +50,21 @@ def mover(esta_i, esta_j):
   while(pos_vaga >-1 and pos_vaga <4):
     if pos_vaga == 0:
       print('Norte')
+      pos_vaga = -1
     elif pos_vaga == 1:
       print('Leste')
       esta_i_atualizado = esta_i_atualizado + 1
-      if(esta_i_atualizado > 3):
-        exit(1)
-      direcaoDeIda(esta_i_atualizado ,esta_j)#Nova posição que está
+      if esta_i_atualizado < 4:
+        pos_vaga = direcaoDeIda(esta_i_atualizado ,esta_j)#Nova posição que está
     elif pos_vaga == 2:
       print('Sul')
+      pos_vaga = -1
     elif pos_vaga == 3:
       print('Oeste')
+      pos_vaga = -1
     else:
       print('Todas adjacencias Oculpadas')
+      pos_vaga = -1
 
 map_atualiza = mapa()
 mover(1,1)
